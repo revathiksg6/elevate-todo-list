@@ -1,4 +1,4 @@
-# elevate-todo-list
+# To-Do List Web App
 This project is a simple front-end To-Do List Web App built using HTML, CSS, and Vanilla JavaScript.
 
 ## Objective
