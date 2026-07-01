@@ -1,68 +1,88 @@
-body{
-    background: #000000;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+* {
+  box-sizing: border-box;
 }
 
-.container{
-    width: 100%;
-    max-width: 700px;
-    background: #1b1b1b;
-    color: #ffffff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.08);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
 }
 
-h1{
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ffffff;
+.container {
+  width: min(90%, 520px);
+  margin: 60px auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.input-box input,
-.input-box select,
-.search-box input{
-    background: #2b2b2b;
-    color: #ffffff;
-    border: 1px solid #555;
+h1 {
+  margin-top: 0;
+  text-align: center;
 }
 
-.input-box input::placeholder,
-.search-box input::placeholder{
-    color: #bdbdbd;
+.input-group {
+  display: flex;
+  gap: 10px;
 }
 
-li{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #2a2a2a;
-    color: #ffffff;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    transition: 0.3s;
+#taskInput {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
 }
 
-li.completed .task-text{
-    color: #9e9e9e;
-    text-decoration: line-through;
+#addBtn {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
 }
 
-.task-info{
-    color: #ffffff;
+#addBtn:hover {
+  background: #1d4ed8;
 }
 
-.filter{
-    background: #333333;
-    color: #ffffff;
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
 }
 
-.filter.active{
-    background: #2575fc;
-    color: #ffffff;
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.task-text {
+  cursor: pointer;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+.delete-btn {
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
 }
