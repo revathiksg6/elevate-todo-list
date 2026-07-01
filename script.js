@@ -1,14 +1,14 @@
-const taskInput = document.getElementById('taskInput');
-const addBtn = document.getElementById('addBtn');
-const clearAllBtn = document.getElementById('clearAllBtn');
-const taskList = document.getElementById('taskList');
-const totalCount = document.getElementById('totalCount');
-const completedCount = document.getElementById('completedCount');
+const taskInput = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
+const clearAllBtn = document.getElementById("clearAllBtn");
+const taskList = document.getElementById("taskList");
+const totalCount = document.getElementById("totalCount");
+const completedCount = document.getElementById("completedCount");
 
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function saveTasks() {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function updateCounts() {
@@ -17,38 +17,38 @@ function updateCounts() {
 }
 
 function renderTasks() {
-  taskList.innerHTML = '';
+  taskList.innerHTML = "";
 
-  tasks.forEach((taskObj, index) => {
-    const li = document.createElement('li');
-    li.className = 'task-item';
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.className = "task-item";
 
-    if (taskObj.completed) {
-      li.classList.add('completed');
+    if (task.completed) {
+      li.classList.add("completed");
     }
 
-    const span = document.createElement('span');
-    span.className = 'task-text';
-    span.textContent = taskObj.text;
+    const span = document.createElement("span");
+    span.className = "task-text";
+    span.textContent = task.text;
 
-    span.addEventListener('click', () => {
+    span.addEventListener("click", function () {
       tasks[index].completed = !tasks[index].completed;
       saveTasks();
       renderTasks();
     });
 
-    const delBtn = document.createElement('button');
-    delBtn.className = 'delete-btn';
-    delBtn.textContent = 'Delete';
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.textContent = "Delete";
 
-    delBtn.addEventListener('click', () => {
+    deleteBtn.addEventListener("click", function () {
       tasks.splice(index, 1);
       saveTasks();
       renderTasks();
     });
 
     li.appendChild(span);
-    li.appendChild(delBtn);
+    li.appendChild(deleteBtn);
     taskList.appendChild(li);
   });
 
@@ -56,26 +56,31 @@ function renderTasks() {
 }
 
 function addTask() {
-  const task = taskInput.value.trim();
-  if (!task) return;
+  const taskText = taskInput.value.trim();
 
-  tasks.push({ text: task, completed: false });
+  if (taskText === "") {
+    return;
+  }
+
+  tasks.push({
+    text: taskText,
+    completed: false
+  });
+
   saveTasks();
   renderTasks();
-
-  taskInput.value = '';
-  taskInput.focus();
+  taskInput.value = "";
 }
 
-addBtn.addEventListener('click', addTask);
+addBtn.addEventListener("click", addTask);
 
-taskInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
+taskInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
     addTask();
   }
 });
 
-clearAllBtn.addEventListener('click', () => {
+clearAllBtn.addEventListener("click", function () {
   tasks = [];
   saveTasks();
   renderTasks();
